@@ -63,8 +63,10 @@ public sealed class DiveSplash : MonoBehaviour {
         var start=new GUIStyle(GUI.skin.button){fontSize=22,fontStyle=FontStyle.Bold};start.normal.background=button;start.hover.background=button;start.active.background=button;start.normal.textColor=start.hover.textColor=start.active.textColor=new Color(.035f,.16f,.16f);
         GUI.enabled=audioMix.Ready;if(GUI.Button(new Rect(x,y+295,290,65),audioMix.Ready?"Start game   >":"Preparing audio...",start))StartCoroutine(Enter());GUI.enabled=true;
         label.fontSize=13;GUI.Label(new Rect(x,y+380,500,30),"3v3   /   FIRST TO THREE   /   SOLO + BOTS",label);
-        body.fontSize=14;GUI.Label(new Rect(x,y+415,500,30),"Match actions recorded on Solana Devnet  /  No wallet needed",body);GUI.Label(new Rect(x,h-62,550,30),"WASD to swim    /    Mouse to look    /    E to pass",body);
-        GUI.Label(new Rect(w-220,h-62,200,30),"LOCAL PRACTICE",label);GUI.matrix=Matrix4x4.identity;
+        body.fontSize=16;GUI.Label(new Rect(x,y+413,520,48),"Uses the Solana blockchain and the V1 transaction update\nto record game actions.",body);
+        body.fontSize=14;GUI.Label(new Rect(x,y+465,500,26),"Live on Devnet  /  No wallet needed",body);
+        GUI.Label(new Rect(x,h-62,550,30),"WASD to swim    /    Mouse to look    /    E to pass",body);
+        GUI.matrix=Matrix4x4.identity;
     }
     void OnDestroy(){QualitySettings.shadows=savedShadows;if(shade!=null)Destroy(shade);if(button!=null)Destroy(button);}
 }
