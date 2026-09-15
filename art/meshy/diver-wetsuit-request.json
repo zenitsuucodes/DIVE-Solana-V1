@@ -1,0 +1,12 @@
+{
+  "input_task_id": "01a0a4c7-ee42-7404-af7e-63140dd4005f",
+  "ai_model": "meshy-7",
+  "enable_original_uv": true,
+  "enable_pbr": true,
+  "texture_resolution": "2k",
+  "target_formats": [
+    "glb",
+    "fbx"
+  ],
+  "text_style_prompt": "Full coverage professional diving wetsuit, CLOSED FRONT, high round collar. The entire chest, abdomen, belly, back, shoulders, upper arms, legs and feet are covered in opaque dark navy blue neoprene fabric. A continuous navy fabric panel covers the torso from neck collar to waist, with a small closed vertical zipper and subtle stitched seams. No bare chest, no bare belly, no open jacket, no cutouts, no skin anywhere on torso. Bright cobalt blue side stripes and shoulder accents. Natural tan human skin ONLY on face, neck above the collar, and hands. Realistic goggles, short brown hair. Athletic human diver, clean matte neoprene, natural human face, no logos or text."
+}

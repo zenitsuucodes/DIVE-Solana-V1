@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DIVE — Underwater Arena</title>
+<style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#052b38;font-family:system-ui,sans-serif;color:#eefaff}canvas{width:100%;height:100%;display:block;outline:none}#loading{position:fixed;inset:0;display:grid;place-content:center;text-align:center;background:radial-gradient(ellipse at top,#11677c,#041c29);z-index:2}h1{font-size:64px;letter-spacing:.24em;margin:0 0 12px}p{color:#b3d7df}progress{width:260px;accent-color:#75eed0}#error{max-width:540px;white-space:pre-wrap}</style></head>
+<body><canvas id="unity-canvas" tabindex="0" aria-label="DIVE first-person underwater game. WASD to swim, mouse to look, E to pass, click to shoot, Escape to pause."></canvas>
+<div id="loading" role="status"><h1>DIVE</h1><p id="status">Entering the pool…</p><progress id="progress" max="1" value="0"></progress><p id="error"></p></div>
+<script src="player-config.js"></script><script src="devnet.js"></script><script src="Build/Web.loader.js"></script><script>
+const canvas=document.querySelector('#unity-canvas');canvas.addEventListener('contextmenu',e=>e.preventDefault());
+createUnityInstance(canvas,{dataUrl:'Build/Web.data',frameworkUrl:'Build/Web.framework.js',codeUrl:'Build/Web.wasm',streamingAssetsUrl:'StreamingAssets',companyName:'DIVE',productName:'DIVE',productVersion:'0.2',devicePixelRatio:Math.min(window.devicePixelRatio||1,1.5)},p=>document.querySelector('#progress').value=p).then(instance=>{window.diveInstance=instance;document.querySelector('#loading').remove();canvas.focus();}).catch(error=>{document.querySelector('#status').textContent='The pool could not load.';document.querySelector('#error').textContent=String(error);});
+</script></body></html>
+

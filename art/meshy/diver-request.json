@@ -1,0 +1,14 @@
+{
+  "mode": "preview",
+  "ai_model": "meshy-7",
+  "model_type": "standard",
+  "should_remesh": true,
+  "target_polycount": 18000,
+  "topology": "quad",
+  "pose_mode": "a-pose",
+  "target_formats": [
+    "fbx",
+    "glb"
+  ],
+  "prompt": "A realistic adult male underwater hockey athlete, full body, anatomically natural human proportions, athletic lean build, detailed recognizable human face with short dark hair. Wearing a close-fitting dark navy neoprene short sleeve wetsuit with blue shoulder panels, bare forearms and hands with five separated fingers, close fitting diving goggles over the eyes and a simple snorkel beside the head, plain bare feet for separate swim fins. Neutral symmetrical A pose, arms separated from torso, legs slightly apart. Realistic human, not robot, not armor, no oxygen tank, no weapon, no platform, single character only."
+}

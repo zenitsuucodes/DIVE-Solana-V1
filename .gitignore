@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.env*
+!.env.example
+*.log
+*.blend1
+artifacts/
+unity/Library/
+unity/Temp/
+unity/Logs/
+unity/Obj/
+unity/UserSettings/
+unity/Builds/
+
+unity/.vs/
+unity/*.csproj
+unity/*.sln
+unity/*.slnx
+
+
+# Local generation records contain temporary signed provider URLs.
+art/meshy/*-status.json
+art/meshy/diver-preview.json
+art/meshy/diver-texture.json
+art/meshy/diver-rig.json
+art/meshy/diver-wetsuit.json
