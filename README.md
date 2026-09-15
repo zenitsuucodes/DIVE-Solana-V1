@@ -1,3 +1,5 @@
+![DIVE underwater hockey artwork](docs/images/dive-banner.png)
+
 # DIVE 🌊
 
 ### An underwater hockey game inspired by Solana.
