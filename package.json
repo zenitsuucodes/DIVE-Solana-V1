@@ -7,7 +7,7 @@
     "build": "node scripts/build-web.mjs",
     "dev": "node scripts/serve-unity.mjs",
     "start": "node scripts/serve-unity.mjs",
-    "test": "node --test scripts/devnet-api.test.mjs scripts/devnet-transport.test.mjs",
+    "test": "node --test scripts/devnet-api.test.mjs scripts/devnet-transport.test.mjs scripts/hosted-api.test.mjs",
     "test:devnet": "node --test scripts/devnet-api.test.mjs scripts/devnet-transport.test.mjs",
     "unity:serve": "node scripts/serve-unity.mjs"
   },

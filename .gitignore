@@ -1,5 +1,6 @@
 node_modules/
 dist/
+.vercel/
 .env*
 !.env.example
 *.log
@@ -24,3 +25,5 @@ art/meshy/diver-preview.json
 art/meshy/diver-texture.json
 art/meshy/diver-rig.json
 art/meshy/diver-wetsuit.json
+.vercel
+.env*

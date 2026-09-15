@@ -11,4 +11,4 @@ await cp(new URL('web/unity.html',root),new URL('dist/index.html',root));
 await cp(new URL('web/devnet.js',root),new URL('dist/devnet.js',root));
 console.log('Published current Unity first-person player to dist.');
 
-await writeFile(new URL('dist/player-config.js',root),'window.DIVE_STATIC_PREVIEW='+JSON.stringify(process.env.VERCEL==='1')+';\n');
+await writeFile(new URL('dist/player-config.js',root),'window.DIVE_STATIC_PREVIEW=false;\nwindow.DIVE_HOSTED_API='+JSON.stringify(process.env.VERCEL==='1'||process.env.DIVE_HOSTED_API==='1')+';\n');

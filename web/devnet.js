@@ -16,10 +16,26 @@ async function request(url,options={}){
  }
 }
 const staticPreview=window.DIVE_STATIC_PREVIEW===true;
+const hosted=window.DIVE_HOSTED_API===true;
+const seen=new Map();
 const session=staticPreview?Promise.resolve():request('session',{method:'POST',body:'{}'}).then(s=>{token=s.token;});session.catch(e=>{localError=e.message;});
 window.diveEvent=payload=>{
  if(staticPreview)return;
  const event=JSON.parse(payload);
+ if(hosted){
+  const key=event.match+':'+event.seq;if(seen.has(key))return;
+  seen.set(key,true);if(seen.size>4000)seen.delete(seen.keys().next().value);
+  const row={...event,status:'queued'};rows.push(row);rows=rows.slice(-5);render();
+  serial=serial.then(async()=>{
+   try{
+    await session;
+    const prepared=await request('prepare',{method:'POST',body:JSON.stringify(event)});
+    row.signature=prepared.signature;row.ticket=prepared.ticket;row.preparedAt=Date.now();row.status='sending';render();
+    await transmit(row);localError='';
+   }catch(e){row.status=row.signature?'unconfirmed':'failed';row.error=e.message;localError=labels[event.type]+': '+e.message;}
+   render();
+  });return;
+ }
  serial=serial.then(async()=>{
   try{await session;await request('events',{method:'POST',body:JSON.stringify(event)});localError='';await refresh();}
   catch(e){localError=labels[event.type]+': '+e.message;document.querySelector('#chain-status').textContent=localError;}
@@ -27,9 +43,29 @@ window.diveEvent=payload=>{
 };
 async function refresh(){
  try{
-  if(token)rows=await request('events');
+  if(token&&hosted){
+   const pending=rows.filter(row=>row.signature&&!['confirmed','failed'].includes(row.status));
+   if(pending.length){
+    const updates=await request('confirm',{method:'POST',body:JSON.stringify({signatures:pending.map(r=>r.signature)})});
+    for(const update of updates){
+     const row=pending.find(r=>r.signature===update.signature);Object.assign(row,update);
+     if(row.status==='confirmed'){delete row.error;delete row.message;delete row.ticket;}
+     else if(row.ticket&&Date.now()-row.preparedAt<150000&&Date.now()-(row.sentAt||0)>12000)await transmit(row);
+     else if(row.status==='unconfirmed'&&Date.now()-row.preparedAt>=150000){delete row.ticket;row.message='Confirmation delayed · Check Solscan';}
+    }
+   }
+  }else if(token)rows=await request('events');
+  render();
+ }catch(e){localError=e.message;}
+}
+async function transmit(row){
+ if(row.sending)return;row.sending=true;row.sentAt=Date.now();
+ try{const sent=await request('send',{method:'POST',body:JSON.stringify({ticket:row.ticket})});if(row.status!=='confirmed')Object.assign(row,sent);}
+ finally{row.sending=false;}
+}
+function render(){
   const list=document.querySelector('#chain-rows');const scroll=list.scrollTop;list.replaceChildren();
-  for(const row of rows.slice(-30).reverse()){
+  for(const row of rows.slice(-5).reverse()){
    const el=document.createElement(row.signature?'a':'span');
    const status=row.status==='unconfirmed'?'awaiting confirmation':row.status==='failed'&&!row.signature?'not sent':row.status;
    el.textContent=(row.actor<3?'Blue · ':'Coral · ')+labels[row.type]+' — '+status;
@@ -39,7 +75,6 @@ async function refresh(){
    list.append(el);
   }
   list.scrollTop=scroll;
- }catch(e){localError=e.message;}
 }
 async function health(){try{const s=await request('status');document.querySelector('#chain-status').textContent=localError||(s.ready?'Connected · Sponsored transactions':s.active?'Awaiting sponsor Devnet SOL':'V1 unavailable');}catch{document.querySelector('#chain-status').textContent='Devnet connection unavailable';}}
 if(staticPreview){document.querySelector('#chain-status').textContent='Game ready · Devnet server not configured';}else{
