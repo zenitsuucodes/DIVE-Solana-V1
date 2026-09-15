@@ -1,25 +1,63 @@
-# DIVE — Unity browser game
+# DIVE 🌊
 
-The current first-person underwater hockey game: human divers, blue and coral teams, poolside splash screen, reflective blue water, audio, and 3v3 gameplay. This repository contains the compiled Unity browser player and source. The old top-down prototype is excluded.
+### An underwater hockey game inspired by Solana.
 
-## Deploy the game
+I’ve been following Solana and its ecosystem, and when I heard about the **V1 transaction update**, I wanted to explore it through something people could actually play.
 
-Import this repository into Vercel. The included `vercel.json` explicitly uses **npm run build**, output **dist**, and no framework preset. This copies the current Unity player; it does not run Vite or build the former prototype. Only `/` is an intended public page.
+---
 
-The compiled player in `web/player/Build` is committed so deployment does not require Unity on the build server. To publish future Unity changes, rebuild with **DIVE > Build browser preview**, copy the resulting Build folder into `web/player/Build`, then run `npm run build` and push.
+## What is DIVE?
 
-## Run the complete game locally
+DIVE is a **first-person underwater hockey game** you can play in your browser.
 
-Run `npm ci`, `npm run build`, then `npm start`. Open http://127.0.0.1:5186/.
+You enter the pool with two computer-controlled teammates and face an opposing team of three. Swim into position, pass the puck, steal possession, and take your shot.
 
-The local Node server sponsors real Solana Devnet V1 event receipts. A static Vercel deployment serves the Unity game, but does **not** run the local sponsor server. Hosted receipts need a separately configured backend; the wallet seed and API keys are deliberately excluded. Do not put them in frontend files.
+**First to three goals wins.**
 
-WASD swims, mouse looks, Space rises, Ctrl dives, Shift sprints, hold/release click shoots, E passes, Escape pauses, and M mutes. One team starts with possession; the conceding team restarts after goals.
+With the backend connected, actions such as passes, steals, shots, and goals create **real Solana V1 transaction receipts on Devnet**. A small panel lets you follow those receipts and open them on Solscan.
 
-`npm test` checks Devnet ordering, retries, duplicate prevention and confirmation recovery. Open `unity` with Unity 6000.6.0f1 and Web Build Support to edit the game. The Unity MCP companion package is included via a relative path in `vendor`.
+**No wallet connection is needed to play.**
 
-## Credits
+---
 
-See ASSETS.md for Meshy, Blender and ElevenLabs asset provenance. Made with AnkleBreaker MCP.
+## Why I’m building it
 
-![AnkleBreaker MCP](vendor/unity-mcp-plugin/icon.png)
+I learn best by making things.
+
+DIVE gives me a reason to explore Solana, understand how blockchain transactions fit into an interactive experience, and learn about game development along the way.
+
+The part I find most satisfying is simple: something happens in the pool, and I can see its receipt on Devnet.
+
+This is a hobby project. I’m figuring things out as I go, trying ideas, making mistakes, and improving the game with each version.
+
+I wanted to contribute something playful to an ecosystem I enjoy being around.
+
+---
+
+## Why Solana?
+
+I believe **Solana can be a big part of the future of gaming**.
+
+I’m interested in what becomes possible when games can connect player actions to a shared, public record while keeping the experience easy to enter and fun to play.
+
+DIVE is my small experiment in that direction. It uses the **V1 transaction format** to record match events, giving players a visible connection between what happens in the game and what appears on Devnet.
+
+There’s a lot more to explore, and that’s what makes me want to keep building.
+
+---
+
+## See the game on Devnet
+
+DIVE’s sponsor wallet has recorded real transactions from local match testing.
+
+### [↗ Explore DIVE’s wallet on Solscan](https://solscan.io/account/8TbdK7Yc3QvgxpCycF3TBy8jZnUF5bTC8vpah5dn1Y9V?cluster=devnet)
+
+```
+8TbdK7Yc3QvgxpCycF3TBy8jZnUF5bTC8vpah5dn1Y9V
+```
+
+These are **Devnet transactions using test SOL**. The wallet sponsors the receipts so players don’t need to bring their own funds.
+
+---
+
+**Built for fun. Built to learn. Inspired by Solana.**
