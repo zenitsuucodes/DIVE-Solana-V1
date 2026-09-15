@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.anklebreaker.unity-mcp": {
-      "version": "file:../../vendor/unity-mcp-plugin",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.unity.ext.nunit": {
       "version": "2.1.0",
       "depth": 1,

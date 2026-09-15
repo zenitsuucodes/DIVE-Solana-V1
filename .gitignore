@@ -1,6 +1,15 @@
 node_modules/
 dist/
 .vercel/
+# Local tooling and intermediate asset exports; game-ready assets stay tracked.
+vendor/
+art/
+scripts/create-assets.py
+scripts/create-audio.mjs
+scripts/create-rigged-diver.py
+scripts/generate-announcer.mjs
+scripts/generate-elevenlabs-audio.mjs
+scripts/meshy.mjs
 .env*
 !.env.example
 *.log

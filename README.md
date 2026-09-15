@@ -4,6 +4,8 @@
 
 ### An underwater hockey game inspired by Solana.
 
+**[Play DIVE](https://dive-unity.vercel.app/)** · [Development](docs/DEVELOPMENT.md) · [Credits](docs/credits/README.md)
+
 I’ve been following Solana and its ecosystem, and when I heard about the **V1 transaction update**, I wanted to explore it through something people could actually play.
 
 ---
@@ -16,7 +18,7 @@ You enter the pool with two computer-controlled teammates and face an opposing t
 
 **First to three goals wins.**
 
-With the backend connected, actions such as passes, steals, shots, and goals create **real Solana V1 transaction receipts on Devnet**. A small panel lets you follow those receipts and open them on Solscan.
+Passes, steals, shots, and goals create **real Solana V1 transaction receipts on Devnet** through the connected backend. The panel shows the five newest receipts with Solscan links. Gameplay runs in Unity; the blockchain records match events.
 
 **No wallet connection is needed to play.**
 
@@ -50,7 +52,7 @@ There’s a lot more to explore, and that’s what makes me want to keep buildin
 
 ## See the game on Devnet
 
-DIVE’s sponsor wallet has recorded real transactions from local match testing.
+DIVE’s sponsor wallet records real transactions from the live browser game.
 
 ### [↗ Explore DIVE’s wallet on Solscan](https://solscan.io/account/8TbdK7Yc3QvgxpCycF3TBy8jZnUF5bTC8vpah5dn1Y9V?cluster=devnet)
 
